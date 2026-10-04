@@ -29,7 +29,10 @@ public class ArchivoController {
         }
 
         try {
-            Path directorio = Paths.get("uploads");
+            Path directorio = Paths.get(
+                    System.getProperty("java.io.tmpdir"),
+                    "uploads"
+            );
 
             Files.createDirectories(directorio);
 

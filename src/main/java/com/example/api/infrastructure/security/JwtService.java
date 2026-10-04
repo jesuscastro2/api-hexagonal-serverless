@@ -3,6 +3,7 @@ package com.example.api.infrastructure.security;
 import com.example.api.domain.model.Usuario;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -12,23 +13,24 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY =
-            "MiClaveSecretaParaJWT12345678901234567890";
-
     private static final long EXPIRATION_TIME =
             1000 * 60 * 60; // 1 hora
 
     private final SecretKey key;
 
-    public JwtService() {
+    public JwtService(
+            @Value("${JWT_SECRET:MiClaveSecretaParaJWT12345678901234567890}")
+            String secretKey
+    ) {
         this.key = Keys.hmacShaKeyFor(
-                SECRET_KEY.getBytes(StandardCharsets.UTF_8)
+                secretKey.getBytes(StandardCharsets.UTF_8)
         );
     }
 
     public String generarToken(Usuario usuario) {
 
         Date ahora = new Date();
+
         Date expiracion = new Date(
                 ahora.getTime() + EXPIRATION_TIME
         );
