@@ -31,3 +31,9 @@ variable "jwt_secret" {
   type        = string
   sensitive   = true
 }
+
+
+variable "notification_from_email" {
+  description = "Correo verificado en Amazon SES utilizado como remitente"
+  type        = string
+}

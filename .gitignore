@@ -52,7 +52,6 @@ application-local.properties
 
 # Terraform
 terraform/.terraform/
-terraform/.terraform.lock.hcl
 terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/*.tfvars
@@ -65,3 +64,10 @@ usuarios.csv
 
 # Archivo accidental
 jar
+
+
+
+
+# Artefactos generados por Terraform y Python
+terraform/notification-lambda.zip
+notification-lambda/__pycache__/
